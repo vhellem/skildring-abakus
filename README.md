@@ -11,16 +11,14 @@ The idea behind this template is for you to be able to clone it and quickly star
 
 ## Build and Run
 
-    mvn package docker:build
-
-    docker images
+    $ mvn package docker:build
     
-    Nicos-Air:template-spring-boot-docker nico$ docker images
+    $ docker images
     REPOSITORY                              TAG                 IMAGE ID            CREATED              SIZE
     nicodewet/spring-boot-docker-template   0.0.1-SNAPSHOT      6e923d0dbec1        About a minute ago   193.9 MB
     frolvlad/alpine-oraclejdk8              slim                3f6e317fc0fb        2 weeks ago          166.9 MB
 
-    docker run -p 8080:8080 -t nicodewet/spring-boot-docker-template:0.0.1-SNAPSHOT
+    $ docker run -p 8080:8080 -t nicodewet/spring-boot-docker-template:0.0.1-SNAPSHOT
 
 ## Cleanup
 
