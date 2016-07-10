@@ -5,9 +5,9 @@ Template Spring Boot Docker Project
 
 The idea behind this template is for you to be able to clone it and quickly start using it in your enterprise with the following way of working:
 
-* Use spring-boot-starter-parent as your parent POM.
-* Docker tags will must use the familiar and well understood Maven versioning scheme. 
-* Build the docker image using com.spotify's docker-maven-plugin.
+* Use [spring-boot-starter-parent](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-starters/spring-boot-starter-parent/pom.xml) as your parent POM.
+* Docker tags will must use the familiar and well understood [Maven versioning scheme](https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855). 
+* Build the docker image using com.spotify's [docker-maven-plugin](https://github.com/spotify/docker-maven-plugin).
 
 ## Build and Run
 
