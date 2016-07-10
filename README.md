@@ -8,6 +8,7 @@ The idea behind this template is for you to be able to clone it and quickly star
 * Use [spring-boot-starter-parent](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-starters/spring-boot-starter-parent/pom.xml) as your parent POM.
 * Docker tags will must use the familiar and well understood [Maven versioning scheme](https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855). 
 * Build the docker image using com.spotify's [docker-maven-plugin](https://github.com/spotify/docker-maven-plugin).
+* The Dockerfile uses possibly the smallest (167MB) Docker image, Alpine Linux based, with OracleJDK 8.
 
 The use of com.spotify's plugin delivers on a key requirement, which is the ability to bind the build, tag & push goals to the Maven phases. You can configure the cited plugin so that the container will be built, tagged and pushed when you run just mvn deploy.
 
@@ -36,7 +37,7 @@ The following configuration includes :${project.version} so that the Maven versi
 
 #### docker images
 
-This command confirms our expectations in terms of seeing a Docker image with REPOSITORY nicodewet/spring-boot-docker-template and TAG 0.0.1-SNAPSHOT.
+This command confirms our expectations in terms of seeing a Docker image with REPOSITORY nicodewet/spring-boot-docker-template and TAG 0.0.1-SNAPSHOT. It also confirms a small image size of only 193.9MB.
 
 #### docker run -p 8080:8080 --name spr-boot-templ -t nicodewet/spring-boot-docker-template:0.0.1-SNAPSHOT
 
