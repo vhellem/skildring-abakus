@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import javax.mail.MessagingException;
+
 @CrossOrigin
 @RestController
 public class SubmitController {
@@ -32,6 +34,11 @@ public class SubmitController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         catch(DocumentException e){
+            System.out.println("Document exception Error happened");
+            System.out.println(e.getMessage());
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        catch(MessagingException e){
             System.out.println("Document exception Error happened");
             System.out.println(e.getMessage());
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

@@ -49,48 +49,57 @@ const uiSchema = {
     }
 }
 
-const log = (type) => console.log.bind(console, type);
-
-const onSubmit = ({formData}) => {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        crossDomain: true,
-        url: "http://localhost:8080/register",
-        data: JSON.stringify(formData),
-        //dataType: 'json',
-        cache: false,
-        timeout: 600000,
-        success: [function (data) {
-
-
-
-            console.log("SUCCESS : ", data);
-
-
-        },],
-        error: function (e) {
-
-
-            console.log("ERROR : ", e);
-
-
-        }
-    });
-}
-
-
-
-
 
 class App extends Component {
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+            message: "",
+        }
+
+    }
+
+    onSubmit = (formData)=>  {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            crossDomain: true,
+            url: "http://localhost:8080/register",
+            data: JSON.stringify(formData.formData),
+            //dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: (data) =>  {
+
+
+
+                this.setState({
+                    message: "Kvitteringskildringen ble sendt"});
+
+
+            },
+            error: (e) => {
+                console.log(e);
+
+                this.setState({
+                    message: "Noe gikk galt, kommer sannsynligvis ikke til å funke hvis du prøver igjen heller"});
+
+
+            },
+        });
+    }
   render() {
     return (
+        <div>
         <Form schema={schema}
-      onChange={log("changed")}
               uiSchema={uiSchema}
-      onSubmit={onSubmit}
-      onError={log("errors")} />
+      onSubmit={(formData) => this.onSubmit(formData)}
+      onError={() => this.setState({message: "Noe er galt i skjemaet"})} />
+
+      <p>{this.state.message}</p>
+        </div>
   )
   }
 }

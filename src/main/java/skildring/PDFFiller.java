@@ -10,14 +10,37 @@ import java.net.MalformedURLException;
 
 import com.itextpdf.text.DocumentException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import sun.misc.BASE64Decoder;
 
+import javax.mail.MessagingException;
 
+
+@Service
+@Configuration
 public class PDFFiller {
 
 
+    @Autowired
+    private EmailService emailService ;
 
-    public void handlePDFFill(Skildring data) throws DocumentException, MalformedURLException, IOException{
+    public void sendEmail(String name) throws MessagingException {
+
+
+        Mail mail = new Mail();
+        mail.setFrom("vhellem@gmail.com");
+        mail.setTo("vhellem@gmail.com");
+        mail.setSubject("Ny kvitteringskildring fra " + name);
+        mail.setContent("Kvitteringskildring ligger vedlagt");
+
+        emailService.sendSimpleMessage(mail);
+    }
+
+
+    public void handlePDFFill(Skildring data) throws DocumentException, MalformedURLException, IOException, MessagingException{
 
         //Decodes image into a byte array
         byte[] array ;
@@ -66,6 +89,7 @@ public class PDFFiller {
         stamper.close();
         reader.close();
 
+        this.sendEmail(data.name);
 
 
     }
